@@ -23,7 +23,7 @@ jobs:
         - name: Unpack SDR++ source and core lib
           run: 'mkdir sdrpp_lib && tar -zxvf master.tar.gz -C sdrpp_lib && dpkg-deb -xv sdrpp_debian_sid_amd64.deb ./sdrpp_lib && cp ./.github/workflows/sdrpp_module_hack.cmake ./ && pwd && ls -lah && ls -lah sdrpp_lib'
         - name: Install dependencies
-          run: 'sudo apt-get update && sudo apt-get install libfftw3-dev libglfw3-dev libvolk2-dev libzstd-dev libnng-dev'
+          run: 'sudo apt-get update && sudo apt-get install libfftw3-dev libglfw3-dev libvolk-dev libzstd-dev libnng-dev'
         - name: Cmake
           run: 'mkdir build && cd build && ls -lah .. && cmake .. -DSDRPP_CORE_ROOT="$GITHUB_WORKSPACE/sdrpp_lib/SDRPlusPlus-master/core" -DSDRPP_LIB_ROOT="$GITHUB_WORKSPACE/sdrpp_lib/usr/lib" -DSDRPP_MODULE_CMAKE="$GITHUB_WORKSPACE/sdrpp_module_hack.cmake"'
         - name: Make
@@ -70,7 +70,7 @@ jobs:
           working-directory: sdrpp_lib/sdrpp_windows_x64
           run: C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -c "dlltool -d sdrpp_core.def -l sdrpp_core.lib"
         - name: Install vcpkg dependencies
-          run: vcpkg install fftw3:x64-windows glfw3:x64-windows portaudio:x64-windows zstd:x64-windows libusb:x64-windows
+          run: vcpkg install fftw3:x64-windows glfw3:x64-windows portaudio:x64-windows zstd:x64-windows libusb:x64-windows volk:x64-windows
         - name: Prepare CMake
           working-directory: build
           run: cmake "$Env:GITHUB_WORKSPACE" "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DSDRPP_CORE_ROOT="$Env:GITHUB_WORKSPACE/sdrpp_lib/SDRPlusPlus-master/core" -DSDRPP_LIB_ROOT="$Env:GITHUB_WORKSPACE/sdrpp_lib/sdrpp_windows_x64" -DSDRPP_MODULE_CMAKE="$Env:GITHUB_WORKSPACE/sdrpp_module_hack.cmake" -DCMAKE_BUILD_TYPE=RelWithDebInfo

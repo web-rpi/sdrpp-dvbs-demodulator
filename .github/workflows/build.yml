@@ -68,7 +68,7 @@ jobs:
           working-directory: sdrpp_lib/sdrpp_windows_x64
           run: C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -c "gendef sdrpp_core.dll"
         - name: Generate .lib file
-	  working-directory: sdrpp_lib/sdrpp_windows_x64
+          working-directory: sdrpp_lib/sdrpp_windows_x64
           # run: |
           #   $path = "C:/Program Files/Microsoft Visual Studio"
           #   $contents = Get-ChildItem -Path $path -Force -Recurse -Directory | Select-Object -First 1

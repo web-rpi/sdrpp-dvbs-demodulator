@@ -69,8 +69,8 @@ jobs:
           run: C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -c "gendef sdrpp_core.dll"
         - name: Generate .lib file
           working-directory: sdrpp_lib/sdrpp_windows_x64
-          run: C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -c "dlltool -d sdrpp_core.def -l sdrpp_core.lib"
-		- name: Export GitHub Actions cache environment variables
+	  run: C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64 -c "dlltool -d sdrpp_core.def -l sdrpp_core.lib"
+   	- name: Export GitHub Actions cache environment variables
           uses: actions/github-script@v7
           with:
             script: |
